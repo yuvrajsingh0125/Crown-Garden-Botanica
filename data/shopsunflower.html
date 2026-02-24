@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>The Crown Garden Botanica - Sunflower Products</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    padding:0;
+    background-color:#fff9e6;
+}
+
+header{
+    background-color:#f4b400;
+    color:white;
+    text-align:center;
+    padding:20px;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.container{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    padding:20px;
+}
+
+.product{
+    background:white;
+    width:280px;
+    margin:15px;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 4px 8px rgba(0,0,0,0.2);
+    text-align:center;
+}
+
+.product img{
+    width:100%;
+    height:180px;
+    border-radius:10px;
+}
+
+button{
+    background-color:#ff9800;
+    color:white;
+    border:none;
+    padding:10px;
+    margin:5px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background-color:#e68900;
+}
+
+#cart{
+    background:white;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 4px 8px rgba(0,0,0,0.2);
+}
+
+.total{
+    font-size:20px;
+    font-weight:bold;
+    color:#d35400;
+}
+
+form{
+    background:white;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 4px 8px rgba(0,0,0,0.2);
+}
+
+input, textarea{
+    width:100%;
+    padding:8px;
+    margin:8px 0;
+}
+</style>
+
+<script>
+let cart = [];
+
+function addToCart(name, price){
+    let found = cart.find(item => item.name === name);
+
+    if(found){
+        found.quantity += 1;
+    } else {
+        cart.push({name:name, price:price, quantity:1});
+    }
+
+    displayCart();
+}
+
+function removeFromCart(index){
+    cart.splice(index,1);
+    displayCart();
+}
+
+function displayCart(){
+    let cartList = document.getElementById("cart-items");
+    let total = 0;
+    cartList.innerHTML = "";
+
+    cart.forEach((item,index)=>{
+        let itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        cartList.innerHTML += `
+        ${item.name} - ₹${item.price} x ${item.quantity} = ₹${itemTotal}
+        <button onclick="removeFromCart(${index})">Remove</button>
+        <br><br>
+        `;
+    });
+
+    document.getElementById("total-price").innerText = "Total: ₹" + total;
+}
+
+function placeOrder(){
+    alert("Order placed successfully! 🌻");
+    cart = [];
+    displayCart();
+}
+</script>
+
+</head>
+
+<body>
+
+<header>
+🌻 The Crown Garden Botanica - Organic Sunflower Products 🌻
+</header>
+
+<div class="container">
+
+<div class="product">
+<img src="sunflowerserum.jpg">
+<h3>Sunflower Facial Serum</h3>
+<p>Organic glowing skin serum.</p>
+<p><b>Price: ₹350</b></p>
+<button onclick="addToCart('Sunflower Facial Serum',350)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="sunfloweroil.jpg">
+<h3>Organic Sunflower Oil</h3>
+<p>Cold pressed Vitamin E rich oil.</p>
+<p><b>Price: ₹250</b></p>
+<button onclick="addToCart('Organic Sunflower Oil',250)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="sunflowershampoo.jpg">
+<h3>Sunflower Shampoo</h3>
+<p>Herbal smooth hair shampoo.</p>
+<p><b>Price: ₹280</b></p>
+<button onclick="addToCart('Sunflower Shampoo',280)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="sunflowersprouts.jpg">
+<h3>Sunflower Sprouts</h3>
+<p>Fresh organic sprouts.</p>
+<p><b>Price: ₹150</b></p>
+<button onclick="addToCart('Sunflower Sprouts',150)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="sunflowerseeds.jpg">
+<h3>Sunflower Seeds</h3>
+<p>Healthy roasted seeds.</p>
+<p><b>Price: ₹120</b></p>
+<button onclick="addToCart('Sunflower Seeds',120)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="butter.jpg">
+<h3>Sunflower Seed Butter</h3>
+<p>Organic creamy seed butter.</p>
+<p><b>Price: ₹300</b></p>
+<button onclick="addToCart('Sunflower Seed Butter',300)">Add to Cart</button>
+</div>
+
+</div>
+
+<div id="cart">
+<h2>🛒 Your Cart</h2>
+<div id="cart-items"></div>
+<p class="total" id="total-price">Total: ₹0</p>
+</div>
+
+<form onsubmit="placeOrder(); return false;">
+<h2>Customer Purchase Form</h2>
+
+<label>Full Name:</label>
+<input type="text" required>
+
+<label>Email:</label>
+<input type="email" required>
+
+<label>Phone Number:</label>
+<input type="tel" required>
+
+<label>Delivery Address:</label>
+<textarea required></textarea>
+<br>
+<label>Payment Method</label>
+<select required>
+<option value="">Select Payment Method</option>
+<option>Cash on Delivery</option>
+<option>UPI</option>
+<option>Debit Card</option>
+<option>Credit Card</option>
+<option>Net Banking</option>
+</select>
+<br><br>
+<button type="submit">Place Order</button>
+</form>
+
+</body>
+</html>

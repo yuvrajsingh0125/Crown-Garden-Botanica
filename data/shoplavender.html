@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Crown Garden Botanica - Lavender Products</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3e8ff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #6a0dad;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: #6a0dad;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.product {
+    background-color: white;
+    width: 250px;
+    margin: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+    text-align: center;
+}
+.product img{
+    width:200px;
+    height:150px;
+    border-radius:10px;
+}
+
+
+button {
+    background-color: #6a0dad;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #4b0082;
+}
+
+.cart {
+    background-color: white;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+}
+
+form {
+    background-color: white;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0 15px 0;
+}
+
+.total {
+    font-weight: bold;
+    color: #6a0dad;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Crown Garden Botanica</h1>
+<p>Lavender Collection Store</p>
+</header>
+
+<h2>Lavender Products</h2>
+
+<div class="container">
+
+<div class="product">
+<img src="lavenderfacialserum.jpg" alt="facial serum">
+<h3>Lavender Facial Serum</h3>
+<p>Price: ₹500</p>
+<button onclick="addToCart('Lavender Facial Serum',500)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="lavenderfacemask.jpg" alt="face pack">
+<h3>Lavender Facepack</h3>
+<p>Price: ₹350</p>
+<button onclick="addToCart('Lavender Facepack',350)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="lavenderdryleavespowder.jpg" alt="leaves powder">
+<h3>Lavender Dry Leaves Powder</h3>
+<p>Price: ₹250</p>
+<button onclick="addToCart('Lavender Dry Leaves Powder',250)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="lavenderhairoil.jpg" alt="hair oil">
+<h3>Lavender Hair Oil</h3>
+<p>Price: ₹400</p>
+<button onclick="addToCart('Lavender Hair Oil',400)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="lavenderedibleoil.jpg" alt="edible oil">
+<h3>Lavender Edible Oil</h3>
+<p>Price: ₹450</p>
+<button onclick="addToCart('Lavender Edible Oil',450)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="lavenderbluetea.jpg" alt="blue tea">
+<h3>Lavender Blue Tea</h3>
+<p>Price: ₹300</p>
+<button onclick="addToCart('Lavender Blue Tea',300)">Add to Cart</button>
+</div>
+
+</div>
+
+<div class="cart">
+<h2>Your Cart</h2>
+<ul id="cartItems"></ul>
+<p class="total">Total: ₹<span id="total">0</span></p>
+</div>
+
+<form onsubmit="placeOrder(event)">
+<h2>Customer Details</h2>
+
+<label>Full Name:</label>
+<input type="text" required>
+
+<label>Email:</label>
+<input type="email" required>
+
+<label>Phone Number:</label>
+<input type="text" required>
+
+<label>Address:</label>
+<textarea required></textarea>
+
+<h3>Payment Method</h3>
+<select required>
+<option value="">Select Payment Method</option>
+<option>Cash on Delivery</option>
+<option>UPI</option>
+<option>Credit/Debit Card</option>
+<option>Net Banking</option>
+</select>
+
+<button type="submit">Place Order</button>
+</form>
+
+<script>
+let total = 0;
+
+function addToCart(product, price) {
+    let cartItems = document.getElementById("cartItems");
+    let li = document.createElement("li");
+    li.innerHTML = product + " - ₹" + price + 
+    " <button onclick='removeItem(this," + price + ")'>Remove</button>";
+    cartItems.appendChild(li);
+    total += price;
+    document.getElementById("total").innerText = total;
+}
+
+function removeItem(button, price) {
+    button.parentElement.remove();
+    total -= price;
+    document.getElementById("total").innerText = total;
+}
+
+function placeOrder(event) {
+    event.preventDefault();
+    if(total === 0){
+        alert("Your cart is empty!");
+        return;
+    }
+    alert("Order Placed Successfully! Thank you for shopping with Crown Garden Botanica 🌿");
+}
+</script>
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-const GITHUB_BASE = "https://raw.githubusercontent.com/yuvrajsingh0125/A-pro-flower/master/data/";
+const GITHUB_BASE = "/data/";
 
 export interface Product {
   id: string;
@@ -84,3 +84,4 @@ export const collections = [
   { name: "Amaltas", emoji: "🌼" },
   { name: "Coriandrum", emoji: "🪷" },
 ];
+

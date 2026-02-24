@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crown Garden Botanica - Ageratum Products</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f9f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #2e8b57;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .product {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .product h3 {
+            color: #2e8b57;
+        }
+.product img{
+    width:200px;
+    height:150px;
+    border-radius:10px;
+}
+
+
+        button {
+            padding: 8px 15px;
+            background-color: #2e8b57;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #246b45;
+        }
+
+        .cart {
+            margin-top: 30px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .form-section {
+            margin-top: 30px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #2e8b57;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Crown Garden Botanica</h1>
+    <h2>Ageratum Herbal Products</h2>
+</header>
+
+<div class="container">
+
+    <div class="products">
+
+        <div class="product">
+            <img src="ageratumdryleavespowder.webp" alt="dry leaves powder">
+            <h3>Ageratum Dry Leaves Powder</h3>
+            <p>Price: ₹250</p>
+            <button onclick="addToCart('Ageratum Dry Leaves Powder', 250)">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="ageratumherbalsyrup.jpeg" alt="herbal syrup">
+            <h3>Ageratum Herbal Syrup</h3>
+            <p>Price: ₹300</p>
+            <button onclick="addToCart('Ageratum Herbal Syrup', 300)">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="ageratumextract.jpg" alt="extract">
+            <h3>Ageratum Extract</h3>
+            <p>Price: ₹400</p>
+            <button onclick="addToCart('Ageratum Extract', 400)">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="ageratumherbaltea.jpg" alt="herbal tea">
+            <h3>Ageratum Herbal Tea</h3>
+            <p>Price: ₹200</p>
+            <button onclick="addToCart('Ageratum Herbal Tea', 200)">Add to Cart</button>
+        </div>
+
+    </div>
+
+    <div class="cart">
+        <h2>Your Cart</h2>
+        <ul id="cart-items"></ul>
+        <h3>Total: ₹<span id="total">0</span></h3>
+    </div>
+
+    <div class="form-section">
+        <h2>Customer Details</h2>
+        <form onsubmit="placeOrder(event)">
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <input type="text" placeholder="Phone Number" required>
+            <input type="text" placeholder="Delivery Address" required>
+
+            <h3>Select Payment Method</h3>
+            <select required>
+                <option value="">-- Select Payment Method --</option>
+                <option>Cash on Delivery</option>
+                <option>UPI</option>
+                <option>Debit Card</option>
+                <option>Credit Card</option>
+                <option>Net Banking</option>
+            </select>
+
+            <button type="submit">Place Order</button>
+        </form>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Crown Garden Botanica | Natural Herbal Wellness
+</footer>
+
+<script>
+    let total = 0;
+
+    function addToCart(productName, price) {
+        let cartItems = document.getElementById("cart-items");
+
+        let li = document.createElement("li");
+        li.innerHTML = productName + " - ₹" + price + 
+            " <button onclick='removeItem(this," + price + ")'>Remove</button>";
+
+        cartItems.appendChild(li);
+
+        total += price;
+        document.getElementById("total").innerText = total;
+    }
+
+    function removeItem(button, price) {
+        button.parentElement.remove();
+        total -= price;
+        document.getElementById("total").innerText = total;
+    }
+
+    function placeOrder(event) {
+        event.preventDefault();
+        if(total === 0) {
+            alert("Your cart is empty!");
+            return;
+        }
+        alert("Thank you for shopping with Crown Garden Botanica! Your order has been placed successfully.");
+        location.reload();
+    }
+</script>
+
+</body>
+</html>

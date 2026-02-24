@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crown Garden Botanica - Tulip Collection</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    padding:0;
+    background:#fff5f8;
+}
+
+header{
+    background:#d63384;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+h2{
+    text-align:center;
+    color:#b30059;
+}
+
+.products{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    width:250px;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 4px 8px rgba(0,0,0,0.2);
+    text-align:center;
+}
+
+.card img{
+    width:100%;
+    height:150px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+button{
+    background:#d63384;
+    color:white;
+    border:none;
+    padding:8px 12px;
+    margin-top:10px;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+button:hover{
+    background:#a61e63;
+}
+
+.cart{
+    background:#ffe6f0;
+    padding:20px;
+    margin:20px;
+    border-radius:10px;
+}
+
+form{
+    background:white;
+    padding:20px;
+    margin:20px;
+    border-radius:10px;
+    box-shadow:0 4px 8px rgba(0,0,0,0.2);
+}
+
+input, textarea{
+    width:100%;
+    padding:8px;
+    margin:8px 0;
+}
+
+footer{
+    background:#d63384;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Crown Garden Botanica 🌷</h1>
+<p>Organic Tulip Beauty & Herbal Product Collection</p>
+</header>
+
+<h2>Shop Tulip Products</h2>
+
+<div class="products">
+
+<div class="card">
+<img src="tulipserum.jpg" alt="Tulip Serum">
+<h3>Tulip Facial Serum</h3>
+<p>₹499</p>
+<button onclick="addToCart('Tulip Facial Serum',499)">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="tulippowder.jpg" alt="Tulip Powder">
+<h3>Tulip Petals Powder</h3>
+<p>₹299</p>
+<button onclick="addToCart('Tulip Petals Powder',299)">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="tulipediblesyrup.jpg" alt="Tulip Syrup">
+<h3>Tulip Edible Syrup</h3>
+<p>₹350</p>
+<button onclick="addToCart('Tulip Edible Syrup',350)">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="tulipextract.jpg" alt="Tulip Extract">
+<h3>Tulip Flower Extract</h3>
+<p>₹450</p>
+<button onclick="addToCart('Tulip Flower Extract',450)">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="tuliptea.jpg" alt="Tulip Tea">
+<h3>Tulip Herbal Tea</h3>
+<p>₹250</p>
+<button onclick="addToCart('Tulip Herbal Tea',250)">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="tulip crea.jpg" alt="Tulip Cream">
+<h3>Tulip Organic Anti-Ageing Cream</h3>
+<p>₹599</p>
+<button onclick="addToCart('Tulip Anti-Ageing Cream',599)">Add to Cart</button>
+</div>
+
+</div>
+
+<div class="cart">
+<h2>Your Cart</h2>
+<ul id="cartItems"></ul>
+<h3>Total: ₹<span id="total">0</span></h3>
+</div>
+
+<h2>Customer Purchase Form</h2>
+
+<form onsubmit="submitForm(event)">
+<label>Full Name:</label>
+<input type="text" required>
+
+<label>Email:</label>
+<input type="email" required>
+
+<label>Phone Number:</label>
+<input type="tel" required>
+
+<label>Delivery Address:</label>
+<textarea required></textarea><br>
+<label>Payment Method</label>
+<select required>
+<option value="">Select Payment Method</option>
+<option>Cash on Delivery</option>
+<option>UPI</option>
+<option>Debit Card</option>
+<option>Credit Card</option>
+<option>Net Banking</option>
+</select>
+<br><br>
+
+<button type="submit">Place Order</button>
+</form>
+<marquee behavior="scroll" direction="left">
+🌷 Special Offer: Buy 2 Get 1 Free on Tulip Herbal Tea! |
+🎁 10% Discount on Orders Above ₹1000 |
+🚚 Free Delivery Across India |
+💖 Exclusive Tulip Combo Available Now!
+</marquee>
+<footer>
+<p>© 2026 Crown Garden Botanica | Pure Organic Tulip Collection</p>
+</footer>
+
+<script>
+let total = 0;
+
+function addToCart(product, price){
+    let li = document.createElement("li");
+    li.textContent = product + " - ₹" + price;
+    
+    let removeBtn = document.createElement("button");
+    removeBtn.textContent = "Remove";
+    removeBtn.onclick = function(){
+        li.remove();
+        total -= price;
+        document.getElementById("total").textContent = total;
+    }
+
+    li.appendChild(removeBtn);
+    document.getElementById("cartItems").appendChild(li);
+    total += price;
+    document.getElementById("total").textContent = total;
+}
+
+function submitForm(event){
+    event.preventDefault();
+    alert("Thank you for shopping with Crown Garden Botanica 🌷 Your order has been placed successfully!");
+}
+</script>
+
+</body>
+</html>

@@ -1,13 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ShoppingCart, Leaf, Menu, X } from "lucide-react";
+import { ShoppingCart, Leaf, Menu, X, Sun, Moon } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Navbar: React.FC = () => {
   const { itemCount } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const shouldDark = saved ? saved === "dark" : prefersDark;
+    document.documentElement.classList.toggle("dark", shouldDark);
+    setIsDark(shouldDark);
+  }, []);
+
+  const toggleTheme = () => {
+    const next = !isDark;
+    setIsDark(next);
+    document.documentElement.classList.toggle("dark", next);
+    localStorage.setItem("theme", next ? "dark" : "light");
+  };
 
   const links = [
     { to: "/", label: "Home" },
@@ -36,6 +52,16 @@ const Navbar: React.FC = () => {
               {l.label}
             </Link>
           ))}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={toggleTheme}
+            className="gap-2"
+            aria-label="Toggle theme"
+          >
+            {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            {isDark ? "Light" : "Dark"}
+          </Button>
           <Link to="/checkout">
             <Button variant="outline" size="sm" className="relative gap-2">
               <ShoppingCart className="h-4 w-4" />
@@ -51,6 +77,9 @@ const Navbar: React.FC = () => {
 
         {/* Mobile menu button */}
         <div className="flex items-center gap-3 md:hidden">
+          <Button variant="outline" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
+            {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </Button>
           <Link to="/checkout" className="relative">
             <ShoppingCart className="h-5 w-5 text-foreground" />
             {itemCount > 0 && (

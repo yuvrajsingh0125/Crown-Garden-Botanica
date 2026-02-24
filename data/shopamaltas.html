@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crown Garden Botanica - Amaltas Products</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #fff9e6;
+}
+
+header {
+    background-color: #d4a017;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+h2 {
+    text-align: center;
+    color: #b8860b;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.product {
+    background: white;
+    width: 250px;
+    margin: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.product img {
+    width: 100%;
+    height: 180px;
+    border-radius: 10px;
+}
+
+button {
+    background-color: #d4a017;
+    color: white;
+    padding: 8px;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #a07800;
+}
+
+.cart {
+    background: white;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+form {
+    background: white;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+}
+
+footer {
+    text-align: center;
+    background-color: #d4a017;
+    color: white;
+    padding: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🌿 Crown Garden Botanica</h1>
+    <p>Premium :Herbal Products</p>
+</header>
+
+<h2>Shop Amaltas Products</h2>
+
+<div class="container">
+
+<div class="product">
+    <img src="amaltasdryflowerpowder.jpg">
+    <h3>Amaltas Dry Flower Powder</h3>
+    <p>₹299</p>
+    <button onclick="addToCart('Amaltas Dry Flower Powder',299)">Add to Cart</button>
+</div>
+
+<div class="product">
+    <img src="amaltasseeds.jpg">
+    <h3>Amaltas Seeds</h3>
+    <p>₹199</p>
+    <button onclick="addToCart('Amaltas Seeds',199)">Add to Cart</button>
+</div>
+
+<div class="product">
+    <img src="amaltasextract.jpg">
+    <h3>Amaltas Extract</h3>
+    <p>₹399</p>
+    <button onclick="addToCart('Amaltas Extract',399)">Add to Cart</button>
+</div>
+
+</div>
+
+<div class="cart">
+    <h2>🛒 Your Cart</h2>
+    <ul id="cartItems"></ul>
+    <h3>Total: ₹<span id="total">0</span></h3>
+</div>
+
+<form onsubmit="placeOrder(event)">
+    <h2>Customer Details</h2>
+
+    <label>Full Name</label>
+    <input type="text" required>
+
+    <label>Email</label>
+    <input type="email" required>
+
+    <label>Phone Number</label>
+    <input type="tel" required>
+
+    <label>Address</label>
+    <input type="text" required>
+
+    <label>Payment Method</label>
+    <select required>
+        <option value="">Select Payment Method</option>
+        <option>UPI</option>
+        <option>Credit Card</option>
+        <option>Debit Card</option>
+        <option>Cash on Delivery</option>
+    </select>
+
+    <button type="submit">Place Order</button>
+</form>
+
+<footer>
+    © 2026 Crown Garden Botanica | Natural Herbal Wellness
+</footer>
+
+<script>
+let cart = [];
+let total = 0;
+
+function addToCart(product, price) {
+    cart.push({product, price});
+    total += price;
+    displayCart();
+}
+
+function removeFromCart(index) {
+    total -= cart[index].price;
+    cart.splice(index, 1);
+    displayCart();
+}
+
+function displayCart() {
+    const cartItems = document.getElementById("cartItems");
+    cartItems.innerHTML = "";
+    cart.forEach((item, index) => {
+        cartItems.innerHTML += 
+        `<li>${item.product} - ₹${item.price} 
+        <button onclick="removeFromCart(${index})">Remove</button></li>`;
+    });
+    document.getElementById("total").innerText = total;
+}
+
+function placeOrder(event) {
+    event.preventDefault();
+    if(cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+    }
+    alert("Order Placed Successfully! 🌼 Thank you for shopping at Crown Garden Botanica.");
+    cart = [];
+    total = 0;
+    displayCart();
+}
+</script>
+
+</body>
+</html>

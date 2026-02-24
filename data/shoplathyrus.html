@@ -1,0 +1,197 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crown Garden Botanica - Lathyrus Products</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    padding:0;
+    background:#f4f9f4;
+}
+
+header{
+    background:darkgreen;
+    color:white;
+    padding:15px;
+    text-align:center;
+}
+
+.container{
+    width:90%;
+    margin:auto;
+    padding:20px;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.product{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    text-align:center;
+}
+
+.product img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+button{
+    padding:8px 12px;
+    margin-top:8px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.add-btn{
+    background:green;
+    color:white;
+}
+
+.remove-btn{
+    background:red;
+    color:white;
+}
+
+.cart{
+    margin-top:30px;
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+form{
+    margin-top:20px;
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+input, select, textarea{
+    width:100%;
+    padding:8px;
+    margin:8px 0;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
+
+.submit-btn{
+    background:darkgreen;
+    color:white;
+    font-size:16px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Crown Garden Botanica</h1>
+<h2>Lathyrus Herbal Products</h2>
+</header>
+
+<div class="container">
+
+<div class="products">
+
+<div class="product">
+<img src="lathyrusperfume2.jpg">
+<h3>Lathyrus Perfume</h3>
+<p>₹499</p>
+<button class="add-btn" onclick="addToCart('Lathyrus Perfume')">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="lathyrusscrub.jpg">
+<h3>Lathyrus Scrub</h3>
+<p>₹299</p>
+<button class="add-btn" onclick="addToCart('Lathyrus Scrub')">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="lathyrusrawleaves.jpg">
+<h3>Raw Lathyrus Leaves</h3>
+<p>₹149</p>
+<button class="add-btn" onclick="addToCart('Raw Lathyrus Leaves')">Add to Cart</button>
+</div>
+
+</div>
+
+<div class="cart">
+<h2>Your Cart</h2>
+<ul id="cartList"></ul>
+</div>
+
+<form>
+<h2>Customer Details</h2>
+
+<label>Full Name</label>
+<input type="text" required>
+
+<label>Email</label>
+<input type="email" required>
+
+<label>Phone Number</label>
+<input type="tel" required>
+
+<label>Address</label>
+<textarea rows="3" required></textarea>
+
+<label>Payment Method</label>
+<select required>
+<option value="">Select Payment Method</option>
+<option>Cash on Delivery</option>
+<option>UPI</option>
+<option>Debit Card</option>
+<option>Credit Card</option>
+<option>Net Banking</option>
+</select>
+
+<button type="submit" class="submit-btn">Place Order</button>
+</form>
+
+</div>
+
+<script>
+let cart = [];
+
+function addToCart(product){
+    cart.push(product);
+    displayCart();
+}
+
+function removeFromCart(index){
+    cart.splice(index,1);
+    displayCart();
+}
+
+function displayCart(){
+    let cartList = document.getElementById("cartList");
+    cartList.innerHTML = "";
+    cart.forEach((item,index)=>{
+        let li = document.createElement("li");
+        li.innerHTML = item + 
+        ' <button class="remove-btn" onclick="removeFromCart('+index+')">Remove</button>';
+        cartList.appendChild(li);
+    });
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>The Crown Garden - Flower Bouquets</title>
+
+<style>
+body{
+font-family: Arial, sans-serif;
+background:#f9f3f3;
+margin:0;
+padding:0;
+}
+
+header{
+background:#8e44ad;
+color:white;
+text-align:center;
+padding:20px;
+font-size:28px;
+}
+
+.container{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+padding:20px;
+}
+
+.product{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+text-align:center;
+}
+
+.product img{
+width:100%;
+height:250px;
+object-fit:cover;
+border-radius:10px;
+}
+
+button{
+padding:8px 12px;
+margin:5px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+.add{
+background:#27ae60;
+color:white;
+}
+
+.remove{
+background:#c0392b;
+color:white;
+}
+
+#cart{
+background:#fff;
+padding:20px;
+margin:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+form{
+background:white;
+padding:20px;
+margin:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+input, select{
+width:100%;
+padding:8px;
+margin:8px 0;
+}
+
+footer{
+background:#8e44ad;
+color:white;
+padding:10px;
+}
+</style>
+
+<script>
+let cart=[];
+
+function addToCart(product){
+cart.push(product);
+displayCart();
+}
+
+function removeFromCart(product){
+let index=cart.indexOf(product);
+if(index>-1){
+cart.splice(index,1);
+}
+displayCart();
+}
+
+function displayCart(){
+document.getElementById("cartItems").innerHTML=cart.join("<br>");
+}
+</script>
+
+</head>
+
+<body>
+
+<header>🌸 The Crown Garden - Bouquet Store 🌸</header>
+<div class="container">
+
+<!-- 21 Bouquets -->
+
+<div class="product">
+<img src="rosebouquet.jpg">
+<h3>Rose Bouquet</h3>
+<button class="add" onclick="addToCart('Rose Bouquet')">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Rose Bouquet')">Remove</button>
+</div>
+
+<div class="product">
+<img src="tulipbouquet.jpg">
+<h3>Tulip Bouquet</h3>
+<button class="add" onclick="addToCart('Tulip Bouquet')">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Tulip Bouquet')">Remove</button>
+</div>
+
+<div class="product">
+<img src="lilybouquet.jpg">
+<h3>Lily Bouquet</h3>
+<button class="add" onclick="addToCart('Lily Bouquet')">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Lily Bouquet')">Remove</button>
+</div>
+
+<div class="product">
+<img src="orchidbouquet.jpeg">
+<h3>Orchid Bouquet</h3>
+<button class="add" onclick="addToCart('Orchid Bouquet')">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Orchid Bouquet')">Remove</button>
+</div>
+
+<div class="product">
+<img src="sunflowerbouquet.jpg">
+<h3>Sunflower Bouquet</h3>
+<button class="add" onclick="addToCart('Sunflower Bouquet')">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Sunflower Bouquet')">Remove</button>
+</div>
+
+<div class="product">
+<img src="carnationbouquet.jpg">
+<h3>Carnation Bouquet</h3>
+<button class="add" onclick="addToCart('Carnation Bouquet')">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Carnation Bouquet')">Remove</button>
+</div>
+
+<div class="product">
+<img src="daisybouquet.jpg">
+<h3>Daisy Bouquet</h3>
+<button class="add" onclick="addToCart('Daisy Bouquet')">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Daisy Bouquet')">Remove</button>
+</div>
+
+<div class="product">
+<img src="marigoldbouquet.jpg">
+<h3>Marigold Bouquet</h3>
+<button class="add" onclick="addToCart('Marigold Bouquet')">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Marigold Bouquet')">Remove</button>
+</div>
+
+<div class="product">
+<img src="jasminebouquet.jpg">
+<h3>Jasmine Bouquet</h3>
+<button class="add" onclick="addToCart('Jasmine Bouquet')">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Jasmine Bouquet')">Remove</button>
+</div>
+
+<div class="product">
+<img src="lotusbouquet.jpg">
+<h3>Lotus Bouquet</h3>
+<button class="add" onclick="addToCart('Lotus Bouquet')">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Lotus Bouquet')">Remove</button>
+</div>
+
+<div class="product">
+<img src="lavenderbouquet.jpg">
+<h3>Lavender Bouquet</h3>
+<button class="add" onclick="addToCart('Lavender Bouquet')">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Lavender Bouquet')">Remove</button>
+</div>
+
+<div class="product">
+<img src="hibiscusbouquet.jpg">
+<h3>Hibiscus Bouquet</h3>
+<button class="add" onclick="addToCart('Hibiscus Bouquet')">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Hibiscus Bouquet')">Remove</button>
+</div>
+
+<div class="product">
+<img src="peonybouquet.jpg">
+<h3>Peony Bouquet</h3>
+<button class="add" onclick="addToCart('Peony Bouquet')">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Peony Bouquet')">Remove</button>
+</div>
+
+<div class="product">
+<img src="chrysanthemumsbouquet.jpg">
+<h3>Chrysanthemum Bouquet</h3>
+<button class="add" onclick="addToCart('Chrysanthemum Bouquet')">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Chrysanthemum Bouquet')">Remove</button>
+</div>
+
+<div class="product">
+<img src="gerberabouquet.jpg">
+<h3>Gerbera Bouquet</h3>
+<button class="add" onclick="addToCart('Gerbera Bouquet')">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Gerbera Bouquet')">Remove</button>
+</div>
+
+<div class="product">
+<img src="bluerosebouquet.jpg">
+<h3>Blue Rose Bouquet</h3>
+<button class="add" onclick="addToCart('Blue Rose Bouquet')">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Blue Rose Bouquet')">Remove</button>
+</div>
+
+<div class="product">
+<img src="mixedflowerbouquet.jpg">
+<h3>Mixed Flower Bouquet</h3>
+<button class="add" onclick="addToCart('Mixed Flower Bouquet')">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Mixed Flower Bouquet')">Remove</button>
+</div>
+
+<div class="product">
+<img src="weddingbouquet.jpg">
+<h3>Wedding Bouquet</h3>
+<button class="add" onclick="addToCart('Wedding Bouquet')">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Wedding Bouquet')">Remove</button>
+</div>
+
+<div class="product">
+<img src="anniversarybouquet.jpg">
+<h3>Anniversary Bouquet</h3>
+<button class="add" onclick="addToCart('Anniversary Bouquet')">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Anniversary Bouquet')">Remove</button>
+</div>
+
+<div class="product">
+<img src="birthdaybouquet.jpg">
+<h3>Birthday Bouquet</h3>
+<button class="add" onclick="addToCart('Birthday Bouquet')">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Birthday Bouquet')">Remove</button>
+</div>
+
+<div class="product">
+<img src="valentinesbouquet.jpg">
+<h3>Valentine Special Bouquet</h3>
+<button class="add" onclick="addToCart('Valentine Special Bouquet')">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Valentine Special Bouquet')">Remove</button>
+</div>
+
+</div>
+
+<div id="cart">
+<h2>🛒 Cart Items:</h2>
+<p id="cartItems"></p>
+</div>
+
+<form>
+<h2>Customer Details</h2>
+<input type="text" placeholder="Full Name" required>
+<input type="email" placeholder="Email" required>
+<input type="text" placeholder="Address" required>
+<input type="tel" placeholder="Phone Number" required>
+
+<h3>Payment Method</h3>
+<select>
+<option>Credit Card</option>
+<option>Debit Card</option>
+<option>UPI</option>
+<option>Cash on Delivery</option>
+</select>
+
+<input type="submit" value="Place Order">
+</form>
+
+<footer>
+<marquee>
+🎉 10% OFF on first purchase! | 🌹 Buy 2 Get 1 Free on Roses! | 💐 Free Delivery on orders above ₹999 | 
+</marquee>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,196 @@
+ 
+<!DOCTYPE html>
+<html>
+<head>
+<title>Crown Garden Botanica - Marigold Products</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: #fff8e6;
+    margin:0;
+    padding:0;
+}
+
+header{
+    background: orange;
+    color:white;
+    text-align:center;
+    padding:20px;
+    font-size:28px;
+}
+.products{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.product{
+    background:white;
+    width:250px;
+    margin:15px;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+    text-align:center;
+}
+
+.product img{
+    width:200px;
+    height:150px;
+    border-radius:10px;
+}
+
+
+.card{
+    background:white;
+    width:250px;
+    margin:15px;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+    text-align:center;
+}
+
+button{
+    background:orange;
+    color:white;
+    border:none;
+    padding:8px 12px;
+    margin:5px;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+button:hover{
+    background:darkorange;
+}
+
+#cart{
+    background:white;
+    margin:20px;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+}
+
+form{
+    background:white;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+}
+
+input, select{
+    width:100%;
+    padding:8px;
+    margin:8px 0;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+🌼 Crown Garden Botanica – Marigold Collection
+</header>
+
+<div class="product">
+<img src="marigoldsunscreen.jpg" alt="cream">
+<h3>Marigold Sunscreen</h3>
+<p>Price: ₹350</p>
+<button onclick="addToCart('Marigold Sunscreen',350)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="marigoldserum.jpeg" alt="serum">
+<h3>Marigold Facial Serum</h3>
+<p>Price: ₹450</p>
+<button onclick="addToCart('Marigold Facial Serum',450)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="marigoldsyrup.jpg" alt="syrup">
+<h3>Marigold Edible Syrup</h3>
+<p>Price: ₹300</p>
+<button onclick="addToCart('Marigold Edible Syrup',300)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="marigoldhaircleanser.jpg" alt="hair cleanser">
+<h3>Marigold hair cleanser</h3>
+<p>Price: ₹400</p>
+<button onclick="addToCart('Marigold hair cleanser',400)">Add to Cart</button>
+</div>
+
+</div>
+
+<div id="cart">
+<h2>🛒 Shopping Cart</h2>
+<ul id="cartItems"></ul>
+<h3>Total: ₹<span id="total">0</span></h3>
+</div>
+
+<form onsubmit="return placeOrder()">
+<h2>📝 Customer Details</h2>
+
+<label>Full Name:</label>
+<input type="text" id="name" required>
+
+<label>Email:</label>
+<input type="email" id="email" required>
+
+<label>Phone Number:</label>
+<input type="text" id="phone" required>
+
+<label>Address:</label>
+<input type="text" id="address" required>
+
+<h3>💳 Payment Method</h3>
+<select id="payment" required>
+<option value="">Select Payment Method</option>
+<option>Cash on Delivery</option>
+<option>Credit Card</option>
+<option>Debit Card</option>
+<option>UPI</option>
+<option>Net Banking</option>
+</select>
+
+<button type="submit">Place Order</button>
+
+</form>
+
+<script>
+
+let total = 0;
+
+function addToCart(product, price){
+    let li = document.createElement("li");
+    li.innerHTML = product + " - ₹" + price + 
+    " <button onclick='removeItem(this,"+price+")'>Remove</button>";
+    document.getElementById("cartItems").appendChild(li);
+    total += price;
+    document.getElementById("total").innerText = total;
+}
+
+function removeItem(button, price){
+    button.parentElement.remove();
+    total -= price;
+    document.getElementById("total").innerText = total;
+}
+
+function placeOrder(){
+    if(total === 0){
+        alert("Your cart is empty!");
+        return false;
+    }
+    alert("Order placed successfully! Thank you for shopping with Crown Garden Botanica 🌼");
+    return false;
+}
+
+</script>
+
+</body>
+</html>

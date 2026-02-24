@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>The Crown Garden Botanica - Rose Products</title>
+<style>
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    background:#fff0f5;
+}
+
+header{
+    background:#8b0000;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+h2{
+    text-align:center;
+    color:#8b0000;
+}
+
+.products{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.product{
+    background:white;
+    width:250px;
+    margin:15px;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+    text-align:center;
+}
+
+.product img{
+    width:200px;
+    height:150px;
+    border-radius:10px;
+}
+
+button{
+    background:#8b0000;
+    color:white;
+    border:none;
+    padding:8px 15px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#b22222;
+}
+
+.cart{
+    background:white;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+}
+
+form{
+    background:white;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+}
+
+input, textarea{
+    width:100%;
+    padding:8px;
+    margin:5px 0;
+}
+
+footer{
+    text-align:center;
+    padding:15px;
+    background:#8b0000;
+    color:white;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🌹 The Crown Garden Botanica 🌹</h1>
+<p>Organic Rose Based Beauty & Herbal Products</p>
+</header>
+
+<h2>Our Rose Product's Collection</h2>
+
+<div class="products">
+
+<div class="product">
+<img src="gulkand.jpg" alt="Gulkand">
+<h3>Gulkand</h3>
+<p>Organic rose petal sweet preserve</p>
+<p>₹250</p>
+<button onclick="addToCart('Gulkand',250)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="rosewater.jpg" alt="Rose Water">
+<h3>Rose Water</h3>
+<p>Pure distilled rose toner</p>
+<p>₹150</p>
+<button onclick="addToCart('Rose Water',150)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="roseoil.jpg" alt="Rose Oil">
+<h3>Rose Oil</h3>
+<p>Organic essential oil</p>
+<p>₹500</p>
+<button onclick="addToCart('Rose Oil',500)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="rosepowder.jpg" alt="Rose Powder">
+<h3>Rose Powder</h3>
+<p>Natural face pack powder</p>
+<p>₹200</p>
+<button onclick="addToCart('Rose Powder',200)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="rosepetaljam.jpg" alt="Rose Petal Jam">
+<h3>Rose Petal Jam</h3>
+<p>Organic herbal jam</p>
+<p>₹300</p>
+<button onclick="addToCart('Rose Petal Jam',300)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="rosesoap.jpg" alt="Rose Soap">
+<h3>Rose Soap</h3>
+<p>Handmade organic soap</p>
+<p>₹120</p>
+<button onclick="addToCart('Rose Soap',120)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="rosecream.jpg" alt="Rose Moisturizer">
+<h3>Rose Moisturizer</h3>
+<p>Natural rose cream</p>
+<p>₹350</p>
+<button onclick="addToCart('Rose Moisturizer',350)">Add to Cart</button>
+</div>
+
+</div>
+
+<h2>Your Cart</h2>
+<div class="cart">
+<ul id="cartItems"></ul>
+<h3>Total: ₹<span id="total">0</span></h3>
+<button onclick="clearCart()">Remove All</button>
+</div>
+
+<h2>Purchase Form</h2>
+<form onsubmit="submitForm(event)">
+<label>Full Name</label>
+<input type="text" required>
+
+<label>Email</label>
+<input type="email" required>
+
+<label>Phone Number</label>
+<input type="tel" required>
+
+<label>Address</label>
+<textarea required></textarea>
+  <label>Payment Method</label><br>
+<select required>
+<option value="">Select Payment Method</option>
+<option>Cash on Delivery</option>
+<option>UPI</option>
+<option>Debit Card</option>
+<option>Credit Card</option>
+<option>Net Banking</option>
+</select><br><br>
+<button type="submit">Place Order</button>
+</form>
+<footer>
+<p>© 2026 The Crown Garden Botanica | Organic & Pure Rose Products</p>
+</footer>
+
+<script>
+let total = 0;
+
+function addToCart(product, price){
+    let cart = document.getElementById("cartItems");
+    let li = document.createElement("li");
+    li.textContent = product + " - ₹" + price;
+    li.onclick = function(){
+        cart.removeChild(li);
+        total -= price;
+        document.getElementById("total").innerText = total;
+    }
+    cart.appendChild(li);
+    total += price;
+    document.getElementById("total").innerText = total;
+}
+
+function clearCart(){
+    document.getElementById("cartItems").innerHTML = "";
+    total = 0;
+    document.getElementById("total").innerText = total;
+}
+
+function submitForm(event){
+    event.preventDefault();
+    alert("Thank you for shopping with The Crown Garden Botanica 🌹");
+}
+
+</script>
+
+</body>
+</html>

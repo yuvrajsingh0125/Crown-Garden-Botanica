@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crown Garden Botanica - Calotropis Products</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    background:#f4fff4;
+}
+
+header{
+    background:#2e8b57;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+.products{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.product{
+    background:white;
+    width:250px;
+    margin:15px;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+    text-align:center;
+}
+
+.product img{
+    width:20px;
+    height:150px;
+    border-radius:10px;
+
+}
+
+.card{
+    background:white;
+    width:250px;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    text-align:center;
+}
+
+.card h3{
+    color:#2e8b57;
+}
+
+.card button{
+    padding:8px 15px;
+    margin-top:10px;
+    border:none;
+    border-radius:5px;
+    background:#2e8b57;
+    color:white;
+    cursor:pointer;
+}
+
+.card button:hover{
+    background:#246b45;
+}
+
+.cart{
+    background:#e8ffe8;
+    padding:20px;
+    margin:20px;
+    border-radius:10px;
+}
+
+.cart h2{
+    color:#2e8b57;
+}
+
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+}
+
+.remove-btn{
+    background:red;
+    padding:5px 10px;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+form{
+    background:white;
+    padding:20px;
+    margin:20px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+form input, form textarea{
+    width:100%;
+    padding:8px;
+    margin-bottom:10px;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
+
+form button{
+    background:#2e8b57;
+    color:white;
+    padding:10px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Crown Garden Botanica</h1>
+<p>Premium Calotropis Herbal Products</p>
+</header>
+
+<section class="products">
+
+<div class="card">
+<img src="calotropisleaves.jpg" alt="Gulkand">
+<h3>Calotropis Leaves</h3>
+<p>Price: ₹150</p>
+<button onclick="addToCart('Calotropis Leaves',150)">Add to Cart</button>
+</div>
+
+
+<div class="card">
+<img src="calotropisoil.jpg" alt="Gulkand">
+<h3>Calotropis Oil</h3>
+<p>Price: ₹400</p>
+<button onclick="addToCart('Calotropis Oil',400)">Add to Cart</button>
+</div>
+
+</section>
+
+<section class="cart">
+<h2>Your Cart</h2>
+<div id="cart-items"></div>
+<h3>Total: ₹<span id="total">0</span></h3>
+</section>
+
+<section>
+<form onsubmit="submitOrder(event)">
+<h2>Customer Details</h2>
+
+<input type="text" placeholder="Full Name" required>
+<input type="email" placeholder="Email Address" required>
+<input type="tel" placeholder="Phone Number" required>
+<textarea placeholder="Delivery Address" required></textarea>
+<br>
+<label>Payment Method</label>
+<select required>
+<option value="">Select Payment Method</option>
+<option>Cash on Delivery</option>
+<option>UPI</option>
+<option>Debit Card</option>
+<option>Credit Card</option>
+<option>Net Banking</option>
+</select>
+<br><br>
+<button type="submit">Place Order</button>
+</form>
+</section>
+
+<script>
+let cart = [];
+let total = 0;
+
+function addToCart(product, price){
+    cart.push({product, price});
+    total += price;
+    displayCart();
+}
+
+function removeFromCart(index){
+    total -= cart[index].price;
+    cart.splice(index,1);
+    displayCart();
+}
+
+function displayCart(){
+    let cartItems = document.getElementById("cart-items");
+    cartItems.innerHTML = "";
+
+    cart.forEach((item, index)=>{
+        cartItems.innerHTML += `
+            <div class="cart-item">
+                ${item.product} - ₹${item.price}
+                <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+            </div>
+        `;
+    });
+
+    document.getElementById("total").innerText = total;
+}
+
+function submitOrder(event){
+    event.preventDefault();
+    if(cart.length === 0){
+        alert("Your cart is empty!");
+        return;
+    }
+    alert("Thank you for shopping with Crown Garden Botanica!");
+    cart = [];
+    total = 0;
+    displayCart();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crown Garden Botanica - Orchid Collection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f4ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #6a1b9a;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #6a1b9a;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .product {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ddd;
+            text-align: center;
+        }
+
+        .product img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+        }
+
+        button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .add-btn {
+            background-color: #8e24aa;
+            color: white;
+        }
+
+        .remove-btn {
+            background-color: #e53935;
+            color: white;
+        }
+
+        .cart {
+            background: white;
+            padding: 15px;
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        form {
+            background: white;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+        }
+
+        .submit-btn {
+            background-color: #6a1b9a;
+            color: white;
+            padding: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Crown Garden Botanica</h1>
+    <p>Premium Organic Orchid Products</p>
+</header>
+
+<div class="container">
+
+    <h2>Our Orchid Collection</h2>
+
+    <div class="products">
+
+                <div class="product">
+            <img src="orchidextract.jpg" alt="Orchid Extract">
+            <h3>Orchid Flower Extract</h3>
+            <p>₹350</p>
+            <button class="add-btn" onclick="addToCart('Orchid Flower Extract',350)">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="orchidherbaltea.jpg" alt="Orchid Tea">
+            <h3>Herbal Orchid Tea</h3>
+            <p>₹280</p>
+            <button class="add-btn" onclick="addToCart('Herbal Orchid Tea',280)">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="orchid antiageingcream.jpg" alt="Anti Ageing Cream">
+            <h3>Organic Anti-Ageing Cream</h3>
+            <p>₹550</p>
+            <button class="add-btn" onclick="addToCart('Organic Anti-Ageing Cream',550)">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="orchidperfume.jpg" alt="Orchid Perfume">
+            <h3>Orchid Flower Perfume</h3>
+            <p>₹600</p>
+            <button class="add-btn" onclick="addToCart('Orchid Flower Perfume',600)">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="orchidresin.jpg" alt="Orchid Resin">
+            <h3>Orchid Flower Resin</h3>
+            <p>₹400</p>
+            <button class="add-btn" onclick="addToCart('Orchid Flower Resin',400)">Add to Cart</button>
+        </div>
+
+    </div>
+
+    <div class="cart">
+        <h2>Shopping Cart</h2>
+        <ul id="cart-items"></ul>
+        <h3>Total: ₹<span id="total">0</span></h3>
+    </div>
+
+    <form onsubmit="placeOrder(event)">
+        <h2>Customer Details</h2>
+
+        <input type="text" placeholder="Full Name" required>
+        <input type="email" placeholder="Email Address" required>
+        <input type="tel" placeholder="Phone Number" required>
+        <textarea placeholder="Shipping Address" required></textarea><br>
+<label>Payment Method</label>
+<select required>
+<option value="">Select Payment Method</option>
+<option>Cash on Delivery</option>
+<option>UPI</option>
+<option>Debit Card</option>
+<option>Credit Card</option>
+<option>Net Banking</option>
+</select>
+<br><br>
+
+        <button type="submit" class="submit-btn">Place Order</button>
+    </form>
+
+</div>
+
+<script>
+    let total = 0;
+    const cartItems = document.getElementById("cart-items");
+    const totalDisplay = document.getElementById("total");
+
+    function addToCart(product, price) {
+        total += price;
+
+        const li = document.createElement("li");
+        li.textContent = product + " - ₹" + price + " ";
+
+        const removeBtn = document.createElement("button");
+        removeBtn.textContent = "Remove";
+        removeBtn.className = "remove-btn";
+
+        removeBtn.onclick = function() {
+            total -= price;
+            totalDisplay.textContent = total;
+            cartItems.removeChild(li);
+        };
+
+        li.appendChild(removeBtn);
+        cartItems.appendChild(li);
+
+        totalDisplay.textContent = total;
+    }
+
+    function placeOrder(event) {
+        event.preventDefault();
+        alert("Thank you for shopping with Crown Garden Botanica! Your order has been placed successfully.");
+    }
+</script>
+
+</body>
+</html>

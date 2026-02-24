@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Crown Garden Botanica</title>
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4fff4;
+}
+header{
+    background:darkgreen;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+.products{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:15px;
+    padding:20px;
+}
+.product{
+    background:white;
+    padding:10px;
+    border-radius:10px;
+    text-align:center;
+    box-shadow:0 0 5px gray;
+}
+.product img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    border-radius:10px;
+}
+button{
+    padding:5px 10px;
+    margin:5px;
+    background:green;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+button:hover{
+    background:darkgreen;
+}
+.cart{
+    background:white;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 5px gray;
+}
+form{
+    background:white;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 5px gray;
+}
+input, select{
+    width:100%;
+    padding:8px;
+    margin:5px 0;
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Crown Garden Botanica</h1>
+<p>Flower Based Natural Products Store</p>
+</header>
+
+<div class="products" id="productList">
+</div>
+
+<div class="cart">
+<h2>Your Cart</h2>
+<ul id="cartItems"></ul>
+<h3>Total: ₹<span id="total">0</span></h3>
+</div>
+
+<form>
+<h2>Customer Details</h2>
+<input type="text" placeholder="Full Name" required>
+<input type="email" placeholder="Email" required>
+<input type="text" placeholder="Phone Number" required>
+<input type="text" placeholder="Address" required>
+
+<h3>Mode of Payment</h3>
+<select required>
+<option value="">Select Payment Method</option>
+<option>Credit Card</option>
+<option>Debit Card</option>
+<option>UPI</option>
+<option>Cash on Delivery</option>
+</select>
+
+<input type="text" placeholder="Card / UPI ID (if applicable)">
+<button type="submit">Place Order</button>
+</form>
+
+<script>
+let products = [
+{name:"Rose Syrup",price:150,image:"rosesyrup.jpg"},
+{name:"Lavender Perfume",price:450,image:"lavenderperfume.jpg"},
+{name:"Jasmine Oil",price:300,image:"jasmineoil.jpg"},
+{name:"Hibiscus Powder",price:200,image:"hibiscuspowder.jpg"},
+{name:"Lotus Extract",price:350,image:"lotusextract.jpg"},
+{name:"Marigold Cream",price:250,image:"marigoldcream.jpg"},
+{name:"Tulip Serum",price:400,image:"tulipserum.jpg"},
+{name:"Sunflower Oil",price:280,image:"sunfloweroil.jpg"},
+{name:"Chamomile Tea",price:180,image:"chamomiletea.jpg"},
+{name:"Geranium Spray",price:320,image:"geraniumspray.jpg"},
+{name:"Peony Lotion",price:370,image:"peonylotion.jpg"},
+{name:"Lily Mist",price:290,image:"lilymist.jpg"},
+{name:"Orchid Perfume",price:500,image:"orchidperfume.jpg"},
+{name:"Daisy Facepack",price:220,image:"daisyfacepack.jpg"},
+{name:"Magnolia Serum",price:410,image:"magnoliaserum.jpg"},
+{name:"Rosemary Oil",price:260,image:"rosemaryoil.jpg"},
+{name:"Mint Flower Gel",price:190,image:"mintflowergel.jpg"},
+{name:"Calendula Cream",price:340,image:"calendulacream.jpg"},
+{name:"Blue Pea Tea",price:210,image:"bluepeatea.jpg"},
+{name:"Saffron Essence",price:600,image:"saffronessence.jpg"},
+{name:"Acacia Extract",price:275,image:"acaciaextract.jpg"},
+{name:"Poppy Seed Oil",price:330,image:"poppyseedoil.jpg"},
+{name:"Aloe Flower Gel",price:230,image:"aloeveragel.jpg"},
+{name:"Citrus Blossom Spray",price:310,image:"citrusblossomspray.jpg"},
+{name:"Gardenia Perfume",price:480,image:"gardeniaperfume.jpg"},
+{name:"Lavender Soap",price:160,image:"lavendersoap.jpg"},
+{name:"Rose Facewash",price:210,image:"rosefacewash.jpg"},
+{name:"Hibiscus Shampoo",price:350,image:"hibiscusshampoo.jpg"},
+{name:"Lotus Face Cream",price:390,image:"lotusfacecream.jpg"},
+{name:"Jasmine Attar",price:550,image:"jasmineattar.jpg"}
+];
+
+let cart=[];
+let total=0;
+
+function displayProducts(){
+    let productList=document.getElementById("productList");
+    products.forEach((product,index)=>{
+        productList.innerHTML+=`
+        <div class="product">
+        <img src="${product.image}">
+        <h4>${product.name}</h4>
+        <p>₹${product.price}</p>
+        <button onclick="addToCart(${index})">Add to Cart</button>
+        </div>
+        `;
+    });
+}
+
+function addToCart(index){
+    cart.push(products[index]);
+    total+=products[index].price;
+    updateCart();
+}
+
+function removeFromCart(index){
+    total-=cart[index].price;
+    cart.splice(index,1);
+    updateCart();
+}
+
+function updateCart(){
+    let cartItems=document.getElementById("cartItems");
+    cartItems.innerHTML="";
+    cart.forEach((item,index)=>{
+        cartItems.innerHTML+=`
+        <li>${item.name} - ₹${item.price}
+        <button onclick="removeFromCart(${index})">Remove</button>
+        </li>
+        `;
+    });
+    document.getElementById("total").innerText=total;
+}
+
+displayProducts();
+</script>
+
+</body>
+</html>

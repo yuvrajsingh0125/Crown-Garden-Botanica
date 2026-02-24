@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crown Garden Botanica - Coriandrum Shop</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    padding:0;
+    background:#f4fff4;
+}
+
+header{
+    background:#2e7d32;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+.container{
+    width:95%;
+    margin:auto;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin:20px 0;
+}
+.product img{
+    width:200px;
+    height:150px;
+    border-radius:10px;
+}
+
+
+.card{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 4px 8px rgba(0,0,0,0.1);
+    text-align:center;
+}
+
+.card img{
+    width:100%;
+    height:150px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+button{
+    padding:8px 12px;
+    margin-top:8px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.add-btn{
+    background:#43a047;
+    color:white;
+}
+
+.remove-btn{
+    background:#c62828;
+    color:white;
+}
+
+.cart{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    margin-top:20px;
+}
+
+form{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    margin-top:20px;
+}
+
+input, select, textarea{
+    width:100%;
+    padding:8px;
+    margin:8px 0;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
+
+.submit-btn{
+    background:#2e7d32;
+    color:white;
+    font-size:16px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Crown Garden Botanica</h1>
+    <h2>Coriandrum Herbal Products</h2>
+</header>
+
+<div class="container">
+
+<div class="products">
+
+<div class="card">
+    <img src="coriandrumflowerpowder.jpg" alt="Dry Flower Powder">
+    <h3>Dry Flower Powder</h3>
+    <p>₹250</p>
+    <button class="add-btn" onclick="addToCart('Dry Flower Powder',250)">Add to Cart</button>
+</div>
+
+<div class="card">
+    <img src="coriandrumfacemask.jpg" alt="Coriander Face Mask">
+    <h3>Coriander Face Mask</h3>
+    <p>₹320</p>
+    <button class="add-btn" onclick="addToCart('Coriander Face Mask',320)">Add to Cart</button>
+</div>
+
+<div class="card">
+    <img src="coriandrumscrub.jpg" alt="Coriander Scrub">
+    <h3>Coriander Scrub</h3>
+    <p>₹300</p>
+    <button class="add-btn" onclick="addToCart('Coriander Scrub',300)">Add to Cart</button>
+</div>
+
+<div class="card">
+    <img src="coriandrumleavespowder.jpg" alt="Dry Leaves Powder">
+    <h3>Dry Leaves Powder</h3>
+    <p>₹220</p>
+    <button class="add-btn" onclick="addToCart('Dry Leaves Powder',220)">Add to Cart</button>
+</div>
+
+<div class="card">
+    <img src="coriandrumrawleaves.jpg" alt="Raw Leaves">
+    <h3>Raw Leaves</h3>
+    <p>₹180</p>
+    <button class="add-btn" onclick="addToCart('Raw Leaves',180)">Add to Cart</button>
+</div>
+
+</div>
+
+<div class="cart">
+    <h2>Shopping Cart</h2>
+    <ul id="cart-items"></ul>
+    <h3>Total: ₹<span id="total">0</span></h3>
+</div>
+
+<form onsubmit="placeOrder(event)">
+    <h2>Customer Details</h2>
+
+    <label>Full Name</label>
+    <input type="text" required>
+
+    <label>Email</label>
+    <input type="email" required>
+
+    <label>Phone Number</label>
+    <input type="tel" required>
+
+    <label>Address</label>
+    <textarea required></textarea>
+
+    <label>Payment Method</label>
+    <select required>
+        <option value="">Select Payment Method</option>
+        <option>UPI</option>
+        <option>Credit Card</option>
+        <option>Debit Card</option>
+        <option>Cash on Delivery</option>
+        <option>Net Banking</option>
+    </select>
+
+    <button type="submit" class="submit-btn">Place Order</button>
+</form>
+
+</div>
+
+<script>
+let cart = [];
+let total = 0;
+
+function addToCart(product, price){
+    cart.push({product, price});
+    total += price;
+    displayCart();
+}
+
+function removeFromCart(index){
+    total -= cart[index].price;
+    cart.splice(index,1);
+    displayCart();
+}
+
+function displayCart(){
+    const cartItems = document.getElementById("cart-items");
+    cartItems.innerHTML = "";
+    
+    cart.forEach((item,index)=>{
+        const li = document.createElement("li");
+        li.innerHTML = item.product + " - ₹" + item.price +
+        " <button class='remove-btn' onclick='removeFromCart("+index+")'>Remove</button>";
+        cartItems.appendChild(li);
+    });
+
+    document.getElementById("total").innerText = total;
+}
+
+function placeOrder(event){
+    event.preventDefault();
+    
+    if(cart.length === 0){
+        alert("Your cart is empty!");
+        return;
+    }
+
+    alert("Order placed successfully! Thank you for shopping at Crown Garden Botanica.");
+    cart = [];
+    total = 0;
+    displayCart();
+}
+</script>
+
+</body>
+</html>

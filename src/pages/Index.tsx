@@ -42,7 +42,11 @@ const Index: React.FC = () => {
                 </Button>
               </Link>
               <Link to="/bouquets">
-                <Button size="lg" variant="outline" className="gap-2 border-primary-foreground/30 text-base text-primary-foreground hover:bg-primary-foreground/10">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="gap-2 border-transparent bg-gold text-base text-accent-foreground hover:bg-gold/90"
+                >
                   View Bouquets
                 </Button>
               </Link>

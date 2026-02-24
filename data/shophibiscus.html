@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>The Crown Garden Botanica - Hibiscus Shop</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    background:#fff5f8;
+}
+
+header{
+    background:#8b0000;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+h2{
+    text-align:center;
+    color:#8b0000;
+}
+
+.products{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    width:250px;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 4px 8px rgba(0,0,0,0.2);
+    text-align:center;
+}
+
+.card img{
+    width:100%;
+    height:180px;
+    border-radius:10px;
+}
+
+button{
+    background:#c2185b;
+    color:white;
+    border:none;
+    padding:8px 15px;
+    margin-top:10px;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+button:hover{
+    background:#8b0000;
+}
+
+#cart{
+    background:#ffe4ec;
+    padding:20px;
+    margin:20px;
+    border-radius:10px;
+}
+
+form{
+    background:white;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 4px 8px rgba(0,0,0,0.2);
+}
+
+input, textarea{
+    width:100%;
+    padding:8px;
+    margin:8px 0;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🌺 The Crown Garden Botanica</h1>
+<p>Organic Hibiscus Beauty & Herbal Products</p>
+</header>
+
+<h2>Our Hibiscus Products</h2>
+
+<div class="products">
+
+<div class="card">
+<img src="hibiscusserum.jpg">
+<h3>Hibiscus Facial Serum</h3>
+<p>Organic anti-aging glow serum</p>
+<p>₹450</p>
+<button onclick="addToCart('Hibiscus Facial Serum',450)">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="hibiscuspowder.jpg">
+<h3>Hibiscus Powder</h3>
+<p>Natural skin & hair care powder</p>
+<p>₹250</p>
+<button onclick="addToCart('Hibiscus Powder',250)">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="hibiscusshampoo.jpg">
+<h3>Hibiscus Shampoo</h3>
+<p>Organic herbal hair cleanser</p>
+<p>₹380</p>
+<button onclick="addToCart('Hibiscus Shampoo',380)">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="hibiscusconditioners.jpg">
+<h3>Hibiscus Conditioner</h3>
+<p>Deep nourishing hair conditioner</p>
+<p>₹400</p>
+<button onclick="addToCart('Hibiscus Conditioner',400)">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="hibiscustea.jpg">
+<h3>Hibiscus Tea Leaves</h3>
+<p>Organic detox herbal tea</p>
+<p>₹300</p>
+<button onclick="addToCart('Hibiscus Tea Leaves',300)">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="hibiscussyrup.jpg">
+<h3>Hibiscus Syrup</h3>
+<p>Natural immunity booster syrup</p>
+<p>₹350</p>
+<button onclick="addToCart('Hibiscus Syrup',350)">Add to Cart</button>
+</div>
+
+</div>
+
+<!-- CART SECTION -->
+<div id="cart">
+<h2>🛒 Your Cart</h2>
+<ul id="cartItems"></ul>
+<p><strong>Total: ₹<span id="total">0</span></strong></p>
+<button onclick="clearCart()">Remove All</button>
+</div>
+
+<!-- CUSTOMER FORM -->
+<h2>Customer Details</h2>
+
+<form onsubmit="placeOrder(); return false;">
+<label>Full Name</label>
+<input type="text" required>
+
+<label>Email</label>
+<input type="email" required>
+
+<label>Phone Number</label>
+<input type="tel" required>
+
+<label>Delivery Address</label>
+<textarea required></textarea><br>
+<label>Payment Method</label>
+<select required>
+<option value="">Select Payment Method</option>
+<option>Cash on Delivery</option>
+<option>UPI</option>
+<option>Debit Card</option>
+<option>Credit Card</option>
+<option>Net Banking</option>
+</select><br><br>
+
+<button type="submit">Place Order</button>
+</form>
+
+<script>
+let total = 0;
+
+function addToCart(product, price){
+    let li = document.createElement("li");
+    li.textContent = product + " - ₹" + price;
+
+    let removeBtn = document.createElement("button");
+    removeBtn.textContent = "Remove";
+    removeBtn.style.marginLeft = "10px";
+
+    removeBtn.onclick = function(){
+        li.remove();
+        total -= price;
+        document.getElementById("total").textContent = total;
+    };
+
+    li.appendChild(removeBtn);
+    document.getElementById("cartItems").appendChild(li);
+
+    total += price;
+    document.getElementById("total").textContent = total;
+}
+
+function clearCart(){
+    document.getElementById("cartItems").innerHTML = "";
+    total = 0;
+    document.getElementById("total").textContent = total;
+}
+
+function placeOrder(){
+    if(total === 0){
+        alert("Your cart is empty!");
+    } else {
+        alert("Thank you for shopping at The Crown Garden Botanica! 🌺");
+        clearCart();
+    }
+}
+</script>
+
+</body>
+</html>

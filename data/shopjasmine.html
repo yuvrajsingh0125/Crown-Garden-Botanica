@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Crown Garden Botanica - Jasmine Collection</title>
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: #f4fff4;
+    margin:0;
+    padding:0;
+}
+
+header{
+    background: #2e7d32;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+h2{
+    text-align:center;
+    color:#2e7d32;
+}
+
+.products{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap:20px;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+    padding:15px;
+    text-align:center;
+}
+
+.card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+button{
+    padding:8px 15px;
+    margin:5px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.add{
+    background:#4caf50;
+    color:white;
+}
+
+.remove{
+    background:#e53935;
+    color:white;
+}
+
+.cart{
+    background:#e8f5e9;
+    padding:20px;
+    margin:20px;
+    border-radius:10px;
+}
+
+form{
+    background:white;
+    padding:20px;
+    margin:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+input, textarea{
+    width:100%;
+    padding:8px;
+    margin:8px 0;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
+
+.submit-btn{
+    background:#2e7d32;
+    color:white;
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Crown Garden Botanica</h1>
+<p>Pure & Organic Jasmine Collection 🌿</p>
+</header>
+
+<h2>Shop Jasmine Products</h2>
+
+<div class="products">
+
+<div class="card">
+<img src="jasmineserum.jpg" alt="Jasmine Serum">
+<h3>Jasmine Facial Serum</h3>
+<p>₹450</p>
+<button class="add" onclick="addToCart('Jasmine Facial Serum',450)">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Jasmine Facial Serum',450)">Remove</button>
+</div>
+
+<div class="card">
+<img src="jasmineediblesyrup.jpg" alt="Jasmine Syrup">
+<h3>Jasmine Edible Syrup</h3>
+<p>₹300</p>
+<button class="add" onclick="addToCart('Jasmine Edible Syrup',300)">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Jasmine Edible Syrup',300)">Remove</button>
+</div>
+
+<div class="card">
+<img src="jasmineessentialoil.jpg" alt="Jasmine Oil">
+<h3>Jasmine Essential Oil</h3>
+<p>₹550</p>
+<button class="add" onclick="addToCart('Jasmine Essential Oil',550)">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Jasmine Essential Oil',550)">Remove</button>
+</div>
+
+<div class="card">
+<img src="jasmineherbaltea.jpg" alt="Herbal Tea">
+<h3>Jasmine Herbal Tea</h3>
+<p>₹350</p>
+<button class="add" onclick="addToCart('Jasmine Herbal Tea',350)">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Lotus & Jasmine Herbal Tea',350)">Remove</button>
+</div>
+
+<div class="card">
+<img src="jasminehairmask.jpg" alt="Hair Mask">
+<h3>Jasmine Hair Mask</h3>
+<p>₹400</p>
+<button class="add" onclick="addToCart('Jasmine Hair Mask',400)">Add to Cart</button>
+<button class="remove" onclick="removeFromCart('Jasmine Hair Mask',400)">Remove</button>
+</div>
+
+</div>
+
+<div class="cart">
+<h2>Your Cart</h2>
+<ul id="cart-items"></ul>
+<h3>Total: ₹<span id="total">0</span></h3>
+</div>
+
+<h2>Customer Details</h2>
+
+<form onsubmit="placeOrder(); return false;">
+<input type="text" placeholder="Full Name" required>
+<input type="email" placeholder="Email Address" required>
+<input type="text" placeholder="Phone Number" required>
+<textarea placeholder="Delivery Address" required></textarea><br>
+<label>Payment Method</label>
+<select required>
+<option value="">Select Payment Method</option>
+<option>Cash on Delivery</option>
+<option>UPI</option>
+<option>Debit Card</option>
+<option>Credit Card</option>
+<option>Net Banking</option>
+</select>
+<br><br>
+<button type="submit" class="submit-btn">Place Order</button>
+</form>
+
+<script>
+let total = 0;
+let cartList = document.getElementById("cart-items");
+
+function addToCart(product, price){
+    let li = document.createElement("li");
+    li.textContent = product + " - ₹" + price;
+    li.setAttribute("data-price", price);
+    li.setAttribute("data-name", product);
+    cartList.appendChild(li);
+    total += price;
+    document.getElementById("total").textContent = total;
+}
+
+function removeFromCart(product, price){
+    let items = cartList.getElementsByTagName("li");
+    for(let i=0; i<items.length; i++){
+        if(items[i].getAttribute("data-name") === product){
+            cartList.removeChild(items[i]);
+            total -= price;
+            document.getElementById("total").textContent = total;
+            break;
+        }
+    }
+}
+
+function placeOrder(){
+    if(total === 0){
+        alert("Your cart is empty!");
+    } else {
+        alert("Thank you for shopping with Crown Garden Botanica 🌿");
+        cartList.innerHTML="";
+        total=0;
+        document.getElementById("total").textContent = total;
+    }
+}
+</script>
+
+</body>
+</html>

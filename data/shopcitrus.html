@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Crown Garden Botanica - Citrus Shop</title>
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #fff8e1, #ffe0b2);
+    margin:0;
+    padding:0;
+}
+
+header{
+    background:#ff9800;
+    color:white;
+    text-align:center;
+    padding:20px;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.products{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    margin:30px;
+}
+
+.product{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+    text-align:center;
+    width:250px;
+}
+
+.product h3{
+    color:#ff6f00;
+}
+.product img{
+    width:200px;
+    height:150px;
+    border-radius:10px;
+}
+
+
+button{
+    background:#ff9800;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:5px;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+button:hover{
+    background:#e65100;
+}
+
+.cart{
+    background:white;
+    margin:30px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+form{
+    background:white;
+    margin:30px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+input, select{
+    width:100%;
+    padding:8px;
+    margin:8px 0;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
+
+.submit-btn{
+    background:#4caf50;
+}
+
+.submit-btn:hover{
+    background:#2e7d32;
+}
+
+footer{
+    background:#ff9800;
+    color:white;
+    text-align:center;
+    padding:10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+Crown Garden Botanica - Citrus Collection 🍊
+</header>
+
+<section class="products">
+
+<div class="product">
+<img src="citrussunscreen.jpg" alt="sunscreen">
+<h3>Citrus Sunscreen</h3>
+<p>Price: ₹299</p>
+<button onclick="addToCart('Citrus Sunscreen',299)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="citrusseeds.jpg" alt="seeds">
+<h3>Citrus Seeds</h3>
+<p>Price: ₹149</p>
+<button onclick="addToCart('Citrus Seeds',149)">Add to Cart</button>
+</div>
+
+</section>
+
+<section class="cart">
+<h2>Your Cart</h2>
+<ul id="cart-items"></ul>
+<h3>Total: ₹<span id="total">0</span></h3>
+</section>
+
+<form onsubmit="placeOrder(event)">
+<h2>Customer Details</h2>
+
+<label>Full Name</label>
+<input type="text" required>
+
+<label>Email</label>
+<input type="email" required>
+
+<label>Phone Number</label>
+<input type="tel" required>
+
+<label>Address</label>
+<input type="text" required>
+
+<label>Payment Method</label>
+<select required>
+<option value="">Select Payment Method</option>
+<option>Cash on Delivery</option>
+<option>UPI</option>
+<option>Credit Card</option>
+<option>Debit Card</option>
+<option>Net Banking</option>
+</select>
+
+<button type="submit" class="submit-btn">Place Order</button>
+
+</form>
+
+<footer>
+© 2026 Crown Garden Botanica | Fresh Citrus Wellness Products
+</footer>
+
+<script>
+let total = 0;
+
+function addToCart(product, price){
+    let li = document.createElement("li");
+    li.textContent = product + " - ₹" + price;
+
+    let removeBtn = document.createElement("button");
+    removeBtn.textContent = " Remove";
+    removeBtn.onclick = function(){
+        li.remove();
+        total -= price;
+        document.getElementById("total").textContent = total;
+    };
+
+    li.appendChild(removeBtn);
+    document.getElementById("cart-items").appendChild(li);
+
+    total += price;
+    document.getElementById("total").textContent = total;
+}
+
+function placeOrder(event){
+    event.preventDefault();
+
+    if(total === 0){
+        alert("Your cart is empty!");
+        return;
+    }
+
+    alert("Order Placed Successfully! Thank you for shopping at Crown Garden Botanica 🍊");
+    location.reload();
+}
+</script>
+
+</body>
+</html>

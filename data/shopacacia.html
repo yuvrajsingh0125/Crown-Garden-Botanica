@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crown Garden Botanica - Acacia Products</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f9f4;
+        }
+
+        header {
+            background-color: #2e7d32;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #2e7d32;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .product {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .product button {
+            background-color: #388e3c;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .product button:hover {
+            background-color: #1b5e20;
+        }
+.product img{
+    width:200px;
+    height:150px;
+    border-radius:10px;
+}
+
+
+        #cart {
+            background: white;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        form {
+            background: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+        }
+
+        .submit-btn {
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .submit-btn:hover {
+            background-color: #1b5e20;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Crown Garden Botanica 🌿</h1>
+    <p>Premium Acacia Herbal Products</p>
+</header>
+
+<div class="container">
+
+    <h2>Our Acacia Products</h2>
+
+    <div class="products">
+        <div class="product">
+            <img src="acaciadryleavespowder.jpg" alt="dry leaves powder">
+            <h3>Acacia Dry Leaves Powder</h3>
+            <p>Price: ₹250</p>
+            <button onclick="addToCart('Acacia Dry Leaves Powder',250)">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="acaciafacialserum.jpg" alt="facial serum">
+            <h3>Acacia Facial Serum</h3>
+            <p>Price: ₹450</p>
+            <button onclick="addToCart('Acacia Facial Serum',450)">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="acaciaextract.jpg" alt="extract">
+            <h3>Acacia Extract</h3>
+            <p>Price: ₹350</p>
+            <button onclick="addToCart('Acacia Extract',350)">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="acaciaointment.jpg" alt="ointment">
+            <h3>Acacia Ointment</h3>
+            <p>Price: ₹300</p>
+            <button onclick="addToCart('Acacia Ointment',300)">Add to Cart</button>
+        </div>
+    </div>
+
+    <div id="cart">
+        <h2>Your Cart 🛒</h2>
+        <ul id="cart-items"></ul>
+        <h3>Total: ₹<span id="total">0</span></h3>
+    </div>
+
+    <h2>Customer Details & Payment</h2>
+
+    <form onsubmit="return placeOrder()">
+        <label>Full Name:</label>
+        <input type="text" id="name" required>
+
+        <label>Email:</label>
+        <input type="email" id="email" required>
+
+        <label>Phone Number:</label>
+        <input type="tel" required>
+
+        <label>Address:</label>
+        <textarea required></textarea>
+
+        <label>Payment Method:</label>
+        <select required>
+            <option value="">Select Payment Method</option>
+            <option>UPI</option>
+            <option>Credit Card</option>
+            <option>Debit Card</option>
+            <option>Cash on Delivery</option>
+            <option>Net Banking</option>
+        </select>
+
+        <button type="submit" class="submit-btn">Place Order</button>
+    </form>
+
+</div>
+
+<script>
+    let total = 0;
+
+    function addToCart(product, price) {
+        let cartItems = document.getElementById("cart-items");
+        let li = document.createElement("li");
+        li.textContent = product + " - ₹" + price + " ";
+        
+        let removeBtn = document.createElement("button");
+        removeBtn.textContent = "Remove";
+        removeBtn.onclick = function() {
+            cartItems.removeChild(li);
+            total -= price;
+            document.getElementById("total").textContent = total;
+        };
+
+        li.appendChild(removeBtn);
+        cartItems.appendChild(li);
+
+        total += price;
+        document.getElementById("total").textContent = total;
+    }
+
+    function placeOrder() {
+        if(total === 0){
+            alert("Your cart is empty!");
+            return false;
+        }
+        alert("Thank you for shopping at Crown Garden Botanica! 🌿 Your order has been placed successfully.");
+        return true;
+    }
+</script>
+
+</body>
+</html>
